@@ -1,7 +1,9 @@
 import flask
 import requests
+from flask_cors import CORS
 
 app = flask.Flask(__name__)
+cors = CORS(app, resources={r"/proxy": {"origins": "*"}})
 
 @app.route('/', methods=['GET'])
 def health_check():

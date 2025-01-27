@@ -79,5 +79,10 @@ test_proxy("http://localhost:8080/proxy",
                      })
 test_proxy("http://68.183.44.87/proxy", 
                     {"target": "https://script.google.com/macros/s/AKfycbxgXjWfMPJjQWqIl6PjSicv6FaRibqtoh3-9Zarwf10bYHwuxAXiqFu56VU-GSg5OY50A/exec",
-                    "body": {"scope":"signup", "source": "proxy.com", "email": "proxy-test@test.com"}
+                    "body": {"scope":"signup", "source": "proxy.com", "email": "proxy-live@test.com"}
+                     })
+
+test_proxy("http://68.183.44.87/proxy", 
+                    {"target": "https://script.google.com/macros/s/AKfycbxgXjWfMPJjQWqIl6PjSicv6FaRibqtoh3-9Zarwf10bYHwuxAXiqFu56VU-GSg5OY50A/exec",
+                    "body": {"scope":"visit", "source": "proxy.com"}
                      })
