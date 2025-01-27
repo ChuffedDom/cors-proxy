@@ -1,3 +1,4 @@
+import time
 import requests
 
 def test_get_request(url):
@@ -68,7 +69,9 @@ def test_proxy(url, body):
     except requests.exceptions.RequestException as e:
         print(f"❌ Failed to retrieve data: {e}")
 
-
+print("\n")
+print("🧪 Running tests...")
+print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 test_get_request("http://localhost:8080/")
 test_get_request("http://68.183.44.87")
 test_mirror_reponse("http://localhost:8080/mirror", {"test": "test"})
