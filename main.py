@@ -6,7 +6,7 @@ import logging
 app = Flask(__name__)
 
 # Enable CORS for all routes and origins
-CORS(app)
+CORS(app, debug=True)
 
 # Set up logging to a file
 logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(message)s')
@@ -28,10 +28,21 @@ def mirror():
 
 @app.route('/proxy', methods=['POST', 'OPTIONS'])
 def proxy():
+    if request.method == 'OPTIONS':
+        response = app.response_class(status=200)
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+        return response
     logging.info(f"Proxy endpoint hit with data: {request.json}")
     req_data = request.json
     target = req_data.get('target')
     body = req_data.get('body')
+
+    if not target or not body:
+        logging.error("Missing 'target' or 'body' field in request")
+        return {
+            'error': 'Missing required fields in request'}, 400
 
     # Send the body to the target as a proxy
     try:
