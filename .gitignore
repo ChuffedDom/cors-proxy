@@ -1,0 +1,20 @@
+# .gitignore file
+# This file tells Git what files to ignore in your repository
+
+
+# Ignore all virtual environment directory
+venv/
+
+# Ignore all lock files (pip)
+*.lock
+
+# Ignore all log files (pytest)
+*.log
+
+# Ignore all build directories (pip)
+build/
+
+# Ignore all documentation files (sphinx)
+docs/
+
+.DS_Store
