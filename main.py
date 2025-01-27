@@ -28,8 +28,14 @@ def mirror():
 
 @app.route('/proxy', methods=['POST', 'OPTIONS'])
 def proxy():
-    if flask.request.method == 'OPTIONS':
-        return '', 204  # Respond to the preflight request
+    if request.method == 'OPTIONS':
+        # Respond to preflight request
+        response = app.response_class()
+        response.headers["Access-Control-Allow-Origin"] = "http://localhost:5500"
+        response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+        response.headers["Access-Control-Allow-Credentials"] = "true"
+        return response, 204
     
     request = flask.request.json
     target = request.get('target')
