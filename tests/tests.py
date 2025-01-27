@@ -1,6 +1,7 @@
 import requests
 
 def test_get_request(url):
+    print("\n" + 100 * "=")
     print(f"📋 Testing GET request to {url}...")
     try:
         # Send a GET request to http://localhost:8080/
@@ -14,7 +15,7 @@ def test_get_request(url):
             message = data.get('message', '')
             
             # Print the test result based on the message field
-            if message == "Hello World":
+            if message == "API is working":
                 print("✅ Test passed")
             else:
                 print("❌ Test failed")
@@ -25,3 +26,4 @@ def test_get_request(url):
         print(f"❌ Failed to retrieve data: {e}")
 
 test_get_request("http://localhost:8080/")
+test_get_request("http://68.183.44.87")

@@ -3,9 +3,9 @@ import flask
 app = flask.Flask(__name__)
 
 @app.route('/', methods=['GET'])
-def hello_world():
+def health_check():
     return {
-        'message': 'Hello World'
+        'message': 'API is working'
     }
 
 if __name__ == '__main__':
