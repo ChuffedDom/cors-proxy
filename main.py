@@ -1,4 +1,5 @@
 import flask
+import requests
 
 app = flask.Flask(__name__)
 
@@ -14,6 +15,20 @@ def mirror():
     return {
         'request-sent': flask.request.json
     }
+
+@app.route('/proxy', methods=['POST'])
+def proxy():
+    request = flask.request.json
+    target = request.get('target')
+    body = request.get('body')
+    # send the body to the target as a proxy
+    response = requests.post(target, json=body)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return {
+            'error': 'Failed to proxy the request'
+        }
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
