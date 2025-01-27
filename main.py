@@ -28,6 +28,9 @@ def mirror():
 
 @app.route('/proxy', methods=['POST'])
 def proxy():
+    if flask.request.method == 'OPTIONS':
+        return '', 204  # Respond to the preflight request
+    
     request = flask.request.json
     target = request.get('target')
     body = request.get('body')
