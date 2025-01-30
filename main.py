@@ -11,6 +11,12 @@ CORS(app, debug=True)
 # Set up logging to a file
 logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 
+@app.before_request
+def before_request():
+    """Force HTTPS in Flask if behind a proxy."""
+    if request.headers.get("X-Forwarded-Proto") == "http":
+        return {"error": "Please use HTTPS"}, 403
+
 @app.route('/', methods=['GET'])
 def health_check():
     logging.info("Health check endpoint hit")

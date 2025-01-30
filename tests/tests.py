@@ -73,19 +73,19 @@ print("\n")
 print("🧪 Running tests...")
 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 test_get_request("http://localhost:8080/")
-test_get_request("http://68.183.44.87")
+test_get_request("https://proxy.chuffed.app")
 test_mirror_reponse("http://localhost:8080/mirror", {"test": "test"})
-test_mirror_reponse("http://68.183.44.87/mirror", {"test-live": "test"})
+test_mirror_reponse("https://proxy.chuffed.app/mirror", {"test-live": "test"})
 test_proxy("http://localhost:8080/proxy", 
                     {"target": "https://script.google.com/macros/s/AKfycbxgXjWfMPJjQWqIl6PjSicv6FaRibqtoh3-9Zarwf10bYHwuxAXiqFu56VU-GSg5OY50A/exec",
                     "body": {"scope":"signup", "source": "proxy.com", "email": "proxy-local@test.com"}
                      })
-test_proxy("http://68.183.44.87/proxy", 
+test_proxy("https://proxy.chuffed.app/proxy", 
                     {"target": "https://script.google.com/macros/s/AKfycbxgXjWfMPJjQWqIl6PjSicv6FaRibqtoh3-9Zarwf10bYHwuxAXiqFu56VU-GSg5OY50A/exec",
                     "body": {"scope":"signup", "source": "proxy.com", "email": "proxy-live@test.com"}
                      })
 
-test_proxy("http://68.183.44.87/proxy", 
+test_proxy("https://proxy.chuffed.app/proxy", 
                     {"target": "https://script.google.com/macros/s/AKfycbxgXjWfMPJjQWqIl6PjSicv6FaRibqtoh3-9Zarwf10bYHwuxAXiqFu56VU-GSg5OY50A/exec",
                     "body": {"scope":"visit", "source": "proxy.com"}
                      })
